@@ -1,0 +1,8 @@
+services:
+  php:
+    image: yiisoftware/yii2-php:8.3-fpm-nginx
+    env_file: .env
+    working_dir: ${APP_DIR}
+    restart: on-failure
+    volumes:
+      - ".:${APP_DIR}"
