@@ -1,0 +1,10 @@
+POST http://localhost:8000/api/sum-even
+Content-Type: application/json
+
+{
+  "numbers": [1, 2, 3, 4, 5, 6 ]
+}
+
+
+
+###

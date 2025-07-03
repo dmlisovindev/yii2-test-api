@@ -6,3 +6,5 @@ services:
     restart: on-failure
     volumes:
       - ".:${APP_DIR}"
+    ports:
+      - 8000:80
