@@ -8,3 +8,33 @@ services:
       - ".:${APP_DIR}"
     ports:
       - 8000:80
+    networks:
+      - api-test-local
+  db:
+    image: mysql
+    env_file:
+      - .env
+    command:
+      --sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASS}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASS}
+      MYSQL_ROOT_HOST: ${MYSQL_ROOT_HOST}
+    expose:
+      - "3306"
+    networks:
+      - api-test-local
+  adminer:
+    image: adminer
+    restart: on-failure
+    environment:
+      ADMINER_DESIGN: nette
+    ports:
+      - "8084:8080"
+    networks:
+      - api-test-local
+networks:
+  api-test-local:
+    name: api-test-local
